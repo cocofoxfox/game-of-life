@@ -21,6 +21,9 @@ A typical project layout might be:
    From the directory containing `gameoflife.go`:
    ```bash
    go build gameoflife.go
-1. **Run the Program**
+2. **Run the Program**
    ```bash
    ./gameoflife inputs/sample1.txt > output_sample1.txt
+3. **Run the Tests**
+   ```bash
+   go test or go test -v

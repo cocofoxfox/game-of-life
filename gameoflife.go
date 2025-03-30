@@ -81,7 +81,8 @@ func nextGeneration(currents map[Cell]bool) map[Cell]bool {
 func readFile(r io.Reader) map[Cell]bool {
 	live := make(map[Cell]bool)
 	scanner := bufio.NewScanner(r)
-	// skip the header
+	// skip the header line
+	// TODO: check some edge cases for invalid inputs
 	if scanner.Scan() {
 	}
 	for scanner.Scan() {
@@ -104,6 +105,7 @@ func readFile(r io.Reader) map[Cell]bool {
 		}
 		live[cell] = true
 	}
+	// TODO: handle scanner errors
 	return live
 }
 
@@ -131,4 +133,5 @@ func main() {
 	// TODO: game visualization
 	// TODO: clean up the comments to make them more professional
 	// TODO: unit tests
+	// TODO: log errors
 }
