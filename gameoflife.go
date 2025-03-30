@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// Draft - algorithim and implementation steps:
+// Draft - algorithm and implementation steps:
 // create type Cell for abstracting the coordinators for each element.
 // need a way to handle the directions for checking 8 directions for the neighbours, can create directs slice
 // 1. read from input file to a set to record all the live cells
@@ -46,6 +46,8 @@ func nextGeneration(currents map[Cell]bool) map[Cell]bool {
 			// TODO: can check exists or not to avoid duplicate assignment
 			candidates[Cell{c.X + d.X, c.Y + d.Y}] = true
 		}
+		// add all current alive cells
+		candidates[c] = true
 	}
 
 	next := make(map[Cell]bool)
@@ -119,12 +121,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error: could not open file %s: %v\n", fileName, err)
 		os.Exit(1)
 	}
+	defer file.Close()
 	live := readFile(file)
-
 	// TODO: customize the iteration rounds
 	for i := 0; i < 10; i++ {
 		live = nextGeneration(live)
 	}
 	printOutput(live)
 	// TODO: game visualization
+	// TODO: clean up the comments to make them more professional
+	// TODO: unit tests
 }
